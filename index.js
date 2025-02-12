@@ -69,6 +69,25 @@ class LinkedList {
         this.size++
     }
   }
+  removeFrom(index){
+    if(index < 0 || index > this.size){
+        return null
+    }
+    let removedNode
+    if(index ===0){
+        removedNode = this.head
+        this.head = this.head.next
+    }else{
+        let prev =this.head
+        for(let i =0;i<index-1;i++){
+            prev = prev.next
+        }
+        removedNode = prev.next
+        prev.next=removedNode.next
+    }
+    this.size--
+    return removedNode.value
+  }
 }
 
 const list = new LinkedList();
@@ -81,4 +100,5 @@ list.append(20);
 list.append(30);
 list.append(40);
 list.insert(25,2)
+list.removeFrom(2)
 list.print();
